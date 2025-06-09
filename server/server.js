@@ -16,28 +16,17 @@ const port = process.env.PORT || 4000;
 
 await connectDB();
 await connectCloudinary();
-const allowedOrigins = [
-  'http://localhost:5173',
-  'https://relife-agro-farm-ecommerce.vercel.app'
-];
 
-// Middleware configuration
+//Allow multiple origins
+const allowedOrigins = ['http://localhost:5173']
+
+//Middleware configuration
 app.use(express.json());
 app.use(cookieParser());
-
 app.use(cors({
-  origin: function (origin, callback) {
-    // Allow requests with no origin (like mobile apps or curl)
-    if (!origin) return callback(null, true);
-    if (allowedOrigins.includes(origin)) {
-      return callback(null, true);
-    } else {
-      return callback(new Error('Not allowed by CORS'));
-    }
-  },
-  credentials: true
+  origin: 'https://relife-agro-farm-ecommerce.vercel.app',
+  credentials:true,
 }));
-
 
 app.get('/',(req,res)=> res.send("API is Working"));
 
