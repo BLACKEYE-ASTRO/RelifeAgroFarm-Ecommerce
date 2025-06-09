@@ -125,7 +125,25 @@ export const AppContextProvider = ({ children }) => {
         fetchSeller()
         fetchProducts()
     }, [])
-    const value = { navigate, user, setUser, isSeller, setSeller, showUserLogin, setShowUserLogin, products, currency, addToCart, updateCartItem, removeFromCart, cartItems, searchQuery, setSearchQuery, getCartAmount, getCartCount, axios, fetchProducts }
+
+
+    useEffect(() => {
+        const updateCart = async () => {
+            try {
+                const { data } = await axios.post('/api/cart/update', { userId:user._id,cartItems })
+                if (!data.success) {
+                    toast.error(data.message)
+                }
+            } catch (error) {
+                toast.error(error.message);
+            }
+        }
+        if (user) {
+            updateCart()
+        }
+    }, [cartItems])
+
+    const value = { navigate, user, setUser, isSeller, setSeller, showUserLogin, setShowUserLogin, products, currency, addToCart, updateCartItem, removeFromCart, cartItems, searchQuery, setSearchQuery, getCartAmount, getCartCount, axios, fetchProducts,setCartItems }
 
     return <AppContext.Provider value={value}>
         {children}
