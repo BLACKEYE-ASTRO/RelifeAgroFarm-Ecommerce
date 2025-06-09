@@ -25,7 +25,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
   origin: 'https://relife-agro-farm-ecommerce.vercel.app',
-  credentials: true, // If you're using cookies or auth headers
+  credentials:true,
 }));
 
 app.get('/',(req,res)=> res.send("API is Working"));
