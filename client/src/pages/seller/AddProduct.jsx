@@ -97,7 +97,7 @@ const AddProduct = () => {
                         <input onChange={(e) => setOfferPrice(e.target.value)} value={offerPrice} id="offer-price" type="number" placeholder="0" className="outline-none md:py-2.5 py-2 px-3 rounded border border-gray-500/40" required />
                     </div>
                 </div>
-                <button disabled={loading} className={`px-8 py-2.5 font-medium rounded cursor-pointer text-white ${loading ? 'bg-gray-400 cursor-not-allowed' : 'bg-primary'}`}>{loading ? 'Adding...' : 'ADD'}</button>
+                <button disabled={loading} className={`px-8 py-2.5 font-medium rounded cursor-pointer text-white ${loading ? 'bg-primary-dull cursor-not-allowed' : 'bg-primary'}`}>{loading ? 'Adding...' : 'ADD'}</button>
             </form>
         </div>
     )
