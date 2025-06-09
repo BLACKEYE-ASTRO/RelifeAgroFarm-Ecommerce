@@ -5,15 +5,15 @@ import toast from 'react-hot-toast'
 
 const Orders = () => {
 
-    const { currency,axios } = useAppContext()
+    const { currency, axios } = useAppContext()
     const [orders, setOrders] = useState([])
 
     const fetchOrders = async () => {
         try {
-            const {data} =await axios.get('/api/order/seller')
-            if(data.success){
+            const { data } = await axios.get('/api/order/seller')
+            if (data.success) {
                 setOrders(data.orders)
-            }else{
+            } else {
                 toast.error(data.message);
             }
         } catch (error) {
@@ -35,9 +35,14 @@ const Orders = () => {
                             <div>
                                 {order.items.map((item, index) => (
                                     <div key={index} className="flex flex-col ">
-                                        <p className="font-medium">
-                                            {item.product.name}{" "} <span className="text-primary">x {item.quantity}</span>
-                                        </p>
+                                        {item.product ? (
+                                            <p className="font-medium">
+                                                {item.product.name} <span className="text-primary">x {item.quantity}</span>
+                                            </p>
+                                        ) : (
+                                            <p className="text-red-500">Product not found</p>
+                                        )}
+
                                     </div>
                                 ))}
                             </div>
