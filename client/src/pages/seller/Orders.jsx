@@ -68,7 +68,7 @@ const Orders = () => {
                         ))
                     
                 ) : (
-                    <div className='flex items-center justify-center w-full h-full '>
+                    <div className='flex items-center justify-center w-full h-dvh '>
                         <p className="text-primary-dull">Product not found</p>
                     </div>
                 )}
